@@ -1,0 +1,13 @@
+<div class="tools">
+    <input #myInput type="search" 
+        (input)="setKeyword(myInput.value)"
+        [disabled]="isBusy"
+        >
+    <button (click)="search()" [disabled]="isBusy">Go</button>
+    <img *ngIf="isBusy" src="assets/spinner.gif">
+</div>
+
+<ul>
+    <li *ngFor="let res of results">{{res}}</li>
+</ul>
+
