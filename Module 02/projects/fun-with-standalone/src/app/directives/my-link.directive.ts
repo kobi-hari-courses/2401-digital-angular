@@ -1,11 +1,22 @@
-import { Directive } from '@angular/core';
+import { Directive, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Directive({
-  selector: '[MyLink]',
-  standalone: true
+  selector: '[myLink]',
+  standalone: true, 
+  hostDirectives: [RouterLinkActive, 
+  {
+    directive: RouterLink, 
+    inputs: [
+      'routerLink: myLink'
+    ]
+  }]
 })
 export class MyLinkDirective {
+  readonly rla = inject(RouterLinkActive);
 
-  constructor() {console.log('My Link was created') }
+  constructor() {
+    this.rla.routerLinkActive = 'here';
+  }
 
 }
